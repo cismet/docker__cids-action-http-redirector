@@ -1,0 +1,23 @@
+{
+  "name": "cids-action-http-redirector",
+  "version": "0.0.1",
+  "description": "asks cids action for request options and a redirection url template -> executes request -> puts the result in the redirection url template and redirects to this url",
+  "author": "Jean-Michel Ruiz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cismet/cids-action-http-redirector.git"
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "bugs": {
+    "url": "https://github.com/cismet/cids-action-http-redirector/issues"
+  },
+  "homepage": "https://github.com/cismet/cids-action-http-redirector#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}

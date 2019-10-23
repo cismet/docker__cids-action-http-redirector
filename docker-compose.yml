@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+
+ cids-action-http-redirector:
+  container_name: cids-action-http-redirector
+  image: cismet/cids-action-http-redirector:latest
+  build: .
+  network_mode: bridge
+  ports:
+   - 8082:80
+  volumes:
+   - ./app.conf:/app/app.conf:ro
+  restart: always
+  command: npm start
