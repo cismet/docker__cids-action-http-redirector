@@ -1,7 +1,6 @@
 'use strict';
 
 const fs = require('fs');
-const util = require('util');
 const http = require('http');
 const url = require('url');
 const request = require('request')
@@ -48,21 +47,11 @@ function respond(req, res) {
       if (_error || _res.statusCode != 200) {
         doErrorResponse(_error, _res, res);
       } else {
-        let restApiResult = JSON.parse(_body).res;
-        if (restApiResult) {        
-          let restApiResultJson = JSON.parse(restApiResult);
-          request.post(restApiResultJson.requestOptions, (_error, _res, _body) => {
-            if (_error || _res.statusCode != 200) {
-              doErrorResponse(_error, _res, res);
-            } else {
-              let format = restApiResultJson.redirectToFormat;
-              let cacheId = _body;
-              let location = util.format(format, cacheId);        
-              console.log(`cacheId created (${cacheId}), redirecting to: ${location}`);              
-              res.writeHead(302, { Location: location });
-              res.end();    
-            }
-          });
+        let location = JSON.parse(_body).res;
+        if (location) {        
+          console.log(`redirecting to: ${location}`);              
+          res.writeHead(302, { Location: location });
+          res.end();    
         } else {
           res.writeHead(404, 'Weiterleitungs-Daten nicht gefunden.');
           res.end();    
